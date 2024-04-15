@@ -1,63 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Importe useNavigation
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-
-const PlaceholderImage = require('../component/image/soldado.png');
+const PlaceholderImage = require('../component/image/logo_fatec_cor.png');
 
 const Home = () => {
+  const navigation = useNavigation(); // Mova a chamada useNavigation aqui
+
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [senha2, setSenha2] = useState('');
 
-  const [ semestre, setSemestre] = useState('');
-  const [ disciplina, setDisciplina] = useState('');
-
+  const [semestre, setSemestre] = useState('');
+  const [disciplina, setDisciplina] = useState('');
 
   const onLoginClick = () => {
     console.log('Nome de Usuário:', nomeUsuario);
     console.log('Nova Senha:', senha);
     console.log('confirma Senha:', senha2);
- }
+  }
 
- 
+  const handlePress = (screen) => {
+    navigation.navigate(screen);
+  };
 
   return (
     <View style={styles.container}>
-            <Image source={PlaceholderImage} style={styles.image} />
-            <Text style={styles.titulo}>Home</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome Aluno"
-        onChangeText={text => setNomeUsuario(text)}
-        value={nomeUsuario}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="RA"
-        onChangeText={text => setSenha(text)}
-        value={senha}
-        
-      />
-       <TextInput
-        style={styles.input}
-        placeholder="Semestre"
-        onChangeText={text => setSemestre(text)}
-        value={semestre}
-        
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Disciplina"
-        onChangeText={text => setDisciplina(text)}
-        value={disciplina}
-        
-      />
-      <TouchableOpacity style={styles.botao} onPress={onLoginClick}>
-        <Text style={styles.textoBotao}>Entrar</Text>
+      <Image source={PlaceholderImage} style={styles.image} />
+      <Text style={styles.titulo}>Home</Text>
+
+      <TouchableOpacity style={styles.botao} onPress={() => handlePress('Login')}>
+        <Text style={styles.textoBotao}>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={() => handlePress('Registrar')}>
+        <Text style={styles.textoBotao}>Registrar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={() => handlePress('Ficha')}>
+        <Text style={styles.textoBotao}>Ficha</Text>
       </TouchableOpacity>
     </View>
-    
   );
 };
 
@@ -66,14 +48,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    gap:10,
+    backgroundColor: '#E0FFFF',
+    gap: 10,
   },
   image: {
-    width:'80%',
-    height:100,
-    resizeMode:"contain",
-  
+    width: '80%',
+    height: 100,
+    resizeMode: "contain",
   },
   titulo: {
     fontSize: 40,
@@ -90,7 +71,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   botao: {
-    backgroundColor: 'orange',
+    backgroundColor: 'red',
     width: '75%',
     height: 50,
     justifyContent: 'center',

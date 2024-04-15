@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#E0FFFF',
     gap:10,
   },
   image: {
@@ -66,14 +66,15 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     height: 60,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: '#cccccc',
-    borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+    color:'black',
+    backgroundColor:'white',
   },
   botao: {
-    backgroundColor: 'orange',
+    backgroundColor: 'red',
     width: '75%',
     height: 50,
     justifyContent: 'center',
